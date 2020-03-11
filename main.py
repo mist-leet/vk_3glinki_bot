@@ -1,4 +1,3 @@
-# login, password = 'sims-99@mail.ru', 'zxcvbnm,./'
 from vk_api.keyboard import VkKeyboard
 import requests
 import re
@@ -7,7 +6,9 @@ import vk_api
 from vk_api import VkUpload
 from vk_api.longpoll import VkLongPoll, VkEventType
 from vk_api.utils import get_random_id
-
+import GData
+import Server
+import private
 
 def send_message(statement, worker, id, type):
     if type == 'keyboard_only':
@@ -101,7 +102,7 @@ class GlinkiCleaningt:
                     keyboard.add_line()
         return keyboard.get_keyboard()
 
-    def sendMessage(self,id, message):
+    def sendMessage(self, id, message):
         if isinstance(id, int):
             vk.messages.send(
                 peer_id=id,
@@ -115,7 +116,6 @@ class GlinkiCleaningt:
                 message=message
             )
 
-
     def doMailingToUser(self, id, name, place):
         self.sendMessage(id, str('Привет, ' + name + ', ' + place + ' ждет тебя!\n'))
 
@@ -123,17 +123,15 @@ class GlinkiCleaningt:
         self.sendMessage(id, str(messageTo + ' уведомлен\n'))
 
     def DoMailing(self, id):
-        if self.state.condition==GlinkiCleaningInfo.CONDITION_ACTIVITY:
+        if self.state.condition == GlinkiCleaningInfo.CONDITION_ACTIVITY:
             for person in self.rooms[self.state.choice]:
                 self.doMailingToUser(get_peer_by_name(person), get_name_by_name(person), self.places[self.state.choice])
                 self.doLogToAdmin(id, person)
 
 
-
-
-session = requests.Session()
-login, password = 'sims-99@mail.ru', 'zxcvbnm,./'
-vk_session = vk_api.VkApi(token='f81089340d424016811dce6290e859ed7859a1bc0134e6cd00bdc88b201e1b37406f8a25dff2a53e998b7')
+token = __token
+session = requests.Session(token=__token)
+vk_session = vk_api.VkApi()
 
 longpoll = VkLongPoll(vk_session)
 vk = vk_session.get_api()
@@ -141,11 +139,8 @@ vk = vk_session.get_api()
 cleaner = GlinkiCleaningt()
 current_info = GlinkiCleaningInfo()
 
-
-#send_message(current_info, cleaner, longpoll.check()[0].peer_id, 'keyboard_only')
+# send_message(current_info, cleaner, longpoll.check()[0].peer_id, 'keyboard_only')
 current_info.nextCondition()
-
-
 
 for event in longpoll.listen():
     if event.type == VkEventType.MESSAGE_NEW and event.to_me and event.text:
@@ -154,7 +149,7 @@ for event in longpoll.listen():
         if current_info.condition == GlinkiCleaningInfo.CONDITION_ACTIVITY:
             current_info.choice = GlinkiCleaningt.places.index(event.message)
             cleaner.DoMailing(event.peer_id)
-            send_message(current_info,cleaner,event.peer_id, 'keyboard_only')
+            send_message(current_info, cleaner, event.peer_id, 'keyboard_only')
             current_info.nextCondition()
             continue
 
@@ -162,4 +157,3 @@ for event in longpoll.listen():
             send_message(current_info, cleaner, event.peer_id, 'keyboard_only')
             current_info.nextCondition()
             continue
-
