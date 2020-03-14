@@ -1,6 +1,8 @@
+# coding=utf-8
 from vk_api.keyboard import VkKeyboard
 import requests
 import re
+from datetime import datetime, date, time
 
 import vk_api
 from vk_api import VkUpload
@@ -9,30 +11,33 @@ from vk_api.utils import get_random_id
 
 from GData import GSpace, Room, Place
 
-class ChatCondition:
-    choice = 0
-    condition = 0
-
-    CONDITION_START = 1
-    CONDITION_CHOICE = 2
-    CONDITION_ACTIVITY = 3
-
-    def __init__(self):
-        self.choice = -1
-        self.condition = self.CONDITION_START
-
-    def nextCondition(self):
-        self.condition += 1
-        if self.condition == 4:
-            self.condition = 2
-
-    def getLog(self):
-        return str('ch : ' + str(self.choice) + '\n' + 'con:' + str(self.condition) + '\n')
 
 class info:
-    def __init__(self, choice):
+    def __init__(self, choice, comment=None, date=None):
         self.choice = choice
-        #self.comment = comment
+        self.comment = comment
+        self.date = date
+
+    def getComment(self):
+        if self.comment == 0 or self.comment == 'Отправить без комментария':
+            return ''
+        else:
+            return 'Комментарий: ' + self.comment
+
+
+class Log:
+    def __init__(self):
+        self.places = GSpace.GetPlaces()
+        self.LOG = []
+        for i in range(len(self.places)):
+            self.LOG.append([self.places[i], 0])
+
+    def DoLog(self, str):
+        self.LOG[self.places.index(str)][1] = datetime.now()
+
+    def CheckLogMessage(self, str):
+        delta = self.LOG[self.places.index[str]][1].timedelta(datetime.now())
+        return "Последний раз сообщения по месту '" + str + "' приходили " + delta + '. Все равно отправить?'
 
 class BotMailer:
 
@@ -46,21 +51,23 @@ class BotMailer:
         if self.state == 0:
             self.state = len(self.states)
 
-
-
     def getMessage(self):
-        if self.state == 0:
-            return '____'
+        return '____'
 
     def getKeyboard(self):
         keyboard = VkKeyboard()
-        if self.state == self.states.index('Mailing'):
+        if self.state == self.states.index('Start'):
             keyboard.add_button('Напомнить дежурным')
         elif self.state == self.states.index('Choice'):
             for i in range(len(self.places)):
-                keyboard.add_button(self.places[i].name)
+                keyboard.add_button(self.places[i])
                 if i != len(self.places) - 1:
                     keyboard.add_line()
+        elif self.state == self.states.index('Comment'):
+            keyboard.add_button('Отправить без комментария')
+            # return VkKeyboard().get_empty_keyboard()
+        else:
+            return VkKeyboard().get_empty_keyboard()
         return keyboard.get_keyboard()
 
     def __init__(self, vk):
@@ -68,147 +75,73 @@ class BotMailer:
         self.places = GSpace.GetPlaces()
         self.rooms = GSpace.GetRooms()
         self.states = [
-                      'Choice',
-                      'Mailing'
-                      ]
+            'Start',
+            'Choice',
+            'Comment',
+            'Mailing'
+        ]
         self.state = 0
+        self.log = Log()
 
     def send(self, id, info):
+        self.nextState()
+        if self.state == self.states.index('Start'):
+            self.sendMessage(id, self.getMessage(), self.getKeyboard())
         if self.state == self.states.index('Choice'):
             self.sendMessage(id, self.getMessage(), self.getKeyboard())
         if self.state == self.states.index('Mailing'):
             for person in self.rooms[info.choice].members:
                 self.sendMessage(get_peer_by_name(person),
-                                      str('Привет, ' + person + ', ' + self.places[info.choice].name + ' ждет тебя!\n'),
-                                      self.getKeyboard())
+                                 str('Привет, ' + person + ', ' + self.places[
+                                     info.choice] + ' ждет тебя!\n' + info.getComment()),
+                                 self.getKeyboard())
+
                 self.sendMessage(id,
-                                      str(get_name_by_name(person) + ' уведомлен\n'),
-                                      self.getKeyboard())
-
-        self.nextState()
-
-
-
-
-    def sendMessage(self, id, message, keyboard):
-        if keyboard != 0:
-            if isinstance(id, int):
-                self.vk.messages.send(
-                peer_id=id,
-                random_id=get_random_id(),
-                message=message,
-                keyboard=keyboard
-                )
-            elif isinstance(id, str):
-                self.vk.messages.send(
-                domain=id,
-                random_id=get_random_id(),
-                message=message,
-                keyboard=keyboard
-                )
-        else:
-            if isinstance(id, int):
-                self.vk.messages.send(
-                peer_id=id,
-                random_id=get_random_id(),
-                message=message
-                )
-            elif isinstance(id, str):
-                self.vk.messages.send(
-                domain=id,
-                random_id=get_random_id(),
-                message=message
-                )
-
-    def GetIndexOfPlace(self, str):
-        for i in range(len(self.places)):
-            if str == self.places[i].name:
-                return i
-
-
-class Mailer:
-    def __init__(self, vk):
-        self.vk = vk
-
-    state = ChatCondition()
-
-    places = GSpace.GetPlaces()
-    rooms = GSpace.GetRooms()
-
-
-    def getMessage(self):
-        if self.state.condition == ChatCondition.CONDITION_ACTIVITY:
-            str = 'Ребята, стоит продежурить в ближайшее время:\n'
-            for s in self.rooms[q.choice]:
-                str += s.name + '\n'
-            return str
-        if self.state.condition == ChatCondition.CONDITION_CHOICE or self.state.condition == 1:
-            return 'йцу'
-
-
-    def getKeyboard(self):
-        type = self.state.condition
-        keyboard = VkKeyboard()
-        if type == 1 or type == 3:
-            keyboard.add_button('Напомнить дежурным')
-        elif type == 2:
-            for i in range(len(self.places)):
-                keyboard.add_button(self.places[i].name)
-                if i != len(self.places) - 1:
-                    keyboard.add_line()
-        return keyboard.get_keyboard()
-
+                                 str(get_name_by_name(person) + ' уведомлен\n'),
+                                 self.getKeyboard())
+                self.log.DoLog(self.places[info.choice])
+                #!
+                for a in self.log.LOG:
+                    print(a)
+                #!
+                self.send(id, info)
+        if self.state == self.states.index('Comment'):
+            self.sendMessage(id, "Введите комментарий или нажмите 'Отправить без комментария'", self.getKeyboard())
 
     def sendMessage(self, id, message, keyboard):
         if keyboard != 0:
             if isinstance(id, int):
                 self.vk.messages.send(
-                peer_id=id,
-                random_id=get_random_id(),
-                message=message,
-                keyboard=keyboard
+                    peer_id=id,
+                    random_id=get_random_id(),
+                    message=message,
+                    keyboard=keyboard
                 )
             elif isinstance(id, str):
                 self.vk.messages.send(
-                domain=id,
-                random_id=get_random_id(),
-                message=message,
-                keyboard=keyboard
+                    domain=id,
+                    random_id=get_random_id(),
+                    message=message,
+                    keyboard=keyboard
                 )
         else:
             if isinstance(id, int):
                 self.vk.messages.send(
-                peer_id=id,
-                random_id=get_random_id(),
-                message=message
+                    peer_id=id,
+                    random_id=get_random_id(),
+                    message=message
                 )
             elif isinstance(id, str):
                 self.vk.messages.send(
-                domain=id,
-                random_id=get_random_id(),
-                message=message
+                    domain=id,
+                    random_id=get_random_id(),
+                    message=message
                 )
-
-
-    def doMailingToUser(self, id, name, place):
-        self.sendMessage(id, str('Привет, ' + name + ', ' + place + ' ждет тебя!\n'), self.getKeyboard())
-
-
-    def doLogToAdmin(self, id, messageTo):
-        self.sendMessage(id, str(messageTo + ' уведомлен\n'), self.getKeyboard())
-
-    def DoMailing(self, id):
-        if self.state.condition == ChatCondition.CONDITION_ACTIVITY:
-            for person in self.rooms[self.state.choice].members:
-                self.doMailingToUser(get_peer_by_name(person), get_name_by_name(person), self.places[self.state.choice].name)
-                self.doLogToAdmin(id, person)
-
 
     def GetIndexOfPlace(self, str):
         for i in range(len(self.places)):
-            if str == self.places[i].name:
+            if str == self.places[i]:
                 return i
-
 
 
 def get_id_by_name(str):
@@ -231,5 +164,3 @@ def get_peer_by_name(str):
         return get_id_by_name(str)
     else:
         return get_domain_by_name(str)
-
-

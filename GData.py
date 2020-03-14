@@ -4,10 +4,10 @@ class GSpace:
     @staticmethod
     def GetPlaces():
         places = []
-        places.append(Place('Кухня'))
-        places.append(Place('Раздельный сбор'))
-        places.append(Place('Ванна и туалет'))
-        places.append(Place('Красный ковер + крысики'))
+        places.append('Кухня')
+        places.append('Раздельный сбор')
+        places.append('Ванна и туалет')
+        places.append('Красный ковер + крысики')
         return places
 
 
