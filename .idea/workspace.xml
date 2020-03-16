@@ -9,7 +9,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/vk_3glinki_bot$main.coverage" NAME="main Coverage Results" MODIFIED="1584370610036" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/vk_3glinki_bot$main.coverage" NAME="main Coverage Results" MODIFIED="1584382730459" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -44,14 +44,14 @@
         <counts>
           <entry key="gitignore" value="1" />
           <entry key="png" value="1" />
-          <entry key="py" value="27" />
+          <entry key="py" value="28" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Image" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="27" />
+          <entry key="Python" value="28" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -72,12 +72,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="84" />
+            <state relative-caret-position="22">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
               <folding>
+                <element signature="e#15#54#0" expanded="true" />
                 <element signature="e#308#407#0" />
                 <element signature="e#342#387#0" />
                 <element signature="e#581#656#0" />
@@ -92,7 +93,16 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vk_api.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="141">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GData.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="188">
@@ -586,24 +596,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="84" />
-          <folding>
-            <element signature="e#308#407#0" />
-            <element signature="e#342#387#0" />
-            <element signature="e#581#656#0" />
-            <element signature="e#615#656#0" />
-            <element signature="e#679#761#0" />
-            <element signature="e#2042#2150#0" />
-            <marker date="1584370610004" expanded="true" signature="220:225" ph="..." />
-            <marker date="1584370610004" expanded="true" signature="220:609" ph="..." />
-            <marker date="1584370610004" expanded="true" signature="816:905" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GData.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="188">
@@ -624,6 +616,32 @@
             <element signature="e#2371#2937#0" />
             <element signature="e#2697#2729#0" />
             <marker date="1584368486558" expanded="false" signature="1463:1560" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vk_api.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+          <folding>
+            <element signature="e#15#54#0" expanded="true" />
+            <element signature="e#308#407#0" />
+            <element signature="e#342#387#0" />
+            <element signature="e#581#656#0" />
+            <element signature="e#615#656#0" />
+            <element signature="e#679#761#0" />
+            <element signature="e#2042#2150#0" />
+            <marker date="1584370610004" expanded="true" signature="220:225" ph="..." />
+            <marker date="1584370610004" expanded="true" signature="220:609" ph="..." />
+            <marker date="1584370610004" expanded="true" signature="816:905" ph="..." />
           </folding>
         </state>
       </provider>
