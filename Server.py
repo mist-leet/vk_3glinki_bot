@@ -96,16 +96,17 @@ class BotMailer:
             self.sendMessage(id, self.getMessage(), self.getKeyboard())
         if self.state == self.states.index('Mailing'):
             for person in self.rooms[info.choice].members:
-                self.sendMessage(get_peer_by_name(person),
+                is_ok = self.sendMessage(get_peer_by_name(person),
                                  str('Привет, ' + person + ', ' + self.places[
                                      info.choice] + ' ждет тебя!\n' + info.getComment()),
                                  self.getKeyboard())
-
-                self.sendMessage(id,
+                if is_ok:
+                    self.sendMessage(id,
                                  str(get_name_by_name(person) + ' уведомлен\n'),
                                  self.getKeyboard())
-                self.log.DoLog(self.places[info.choice])
-                self.send(id, info)
+            self.log.DoLog(self.places[info.choice])
+            self.send(id, info)
+
         if self.state == self.states.index('Comment'):
             self.sendMessage(id, "Введите комментарий или нажмите 'Отправить без комментария'", self.getKeyboard())
         if self.state == self.states.index('Asking'):
@@ -114,34 +115,46 @@ class BotMailer:
                                      ', все равно отправить?'), self.getKeyboard())
 
     def sendMessage(self, id, message, keyboard):
-        if keyboard != 0:
-            if isinstance(id, int):
-                self.vk.messages.send(
+        try:
+            if keyboard != 0:
+                if isinstance(id, int):
+                    self.vk.messages.send(
                     peer_id=id,
                     random_id=get_random_id(),
                     message=message,
                     keyboard=keyboard
                 )
-            elif isinstance(id, str):
-                self.vk.messages.send(
+                elif isinstance(id, str):
+                    self.vk.messages.send(
                     domain=id,
                     random_id=get_random_id(),
                     message=message,
                     keyboard=keyboard
                 )
-        else:
-            if isinstance(id, int):
-                self.vk.messages.send(
+            else:
+                if isinstance(id, int):
+                    self.vk.messages.send(
                     peer_id=id,
                     random_id=get_random_id(),
                     message=message
                 )
-            elif isinstance(id, str):
-                self.vk.messages.send(
+                elif isinstance(id, str):
+                    self.vk.messages.send(
                     domain=id,
                     random_id=get_random_id(),
                     message=message
-                )
+                    )
+
+            return True
+        except:
+            print('user ' + str(id) + ' is unregistred')
+            return False
+
+    def getNameById(self, id):
+        for room in self.rooms:
+            for person in room.members:
+                if person.find(str(id)) >= 0:
+                    return get_name_by_name(person)
 
 
 def get_id_by_name(str):

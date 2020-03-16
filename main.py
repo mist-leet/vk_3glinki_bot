@@ -10,12 +10,9 @@ from vk_api.longpoll import VkLongPoll, VkEventType
 from Server import BotMailer, info
 
 class user_mailer:
-
-
     def __init__(self):
         self.mailer = []
-
-
+        self.info = []
     # True -> this element is new element
     def check(self, id):
         for m in self.mailer:
@@ -23,8 +20,20 @@ class user_mailer:
                 return False
         return True
 
-    def add(self, id, vk, rooms, places):
+    def add(self,vk, rooms, places, id, info):
         self.mailer.append(BotMailer(vk, rooms, places, id))
+        self.info.append(info)
+
+    def get(self, id):
+        for m in self.mailer:
+            if m.peer == id:
+                return m
+
+    def getI(self, id):
+        return self.info[self.mailer.index(self.get(id))]
+
+def log(mailer):
+    print('user: ' + str(mailer.peer) + ' state: ' + str(mailer.states[mailer.state]))
 
 session = requests.Session()
 vk_session = vk_api.VkApi(token=private.__token)
@@ -38,26 +47,21 @@ duty = GData.Duty(GData.GSpace.GetRooms(), GData.GSpace.GetPlaces(), is_random=1
 d = duty.getListDuty()
 
 
-mailer = BotMailer(vk, d[0], d[1])
-curr_info = info(0, '')
-
-peer = longpoll.check()[0].peer_id
-print (mailer.states[mailer.state])
-
+#curr_info = info(0, '')
 
 users = user_mailer()
-users.add(vk, d[0], d[1], 0)
-
+users.add(vk, d[0], d[1], 0, info(0, ''))
 
 
 for event in longpoll.listen():
     if (users.check(event.peer_id)):
-        users.add(vk, d[0], d[1], event.peer_id)
+        users.add(vk, d[0], d[1], event.peer_id, info(0, ''))
 
     if event.type == VkEventType.MESSAGE_NEW and event.to_me and event.text:
-        if mailer.state == mailer.states.index('Start') and event.message == 'Показать расписание':
-            mailer.sendMessage(event.peer_id, duty.getDutyMessage(), mailer.getKeyboard())
-            mailer.state -= 1
+        peer = event.peer_id
+        if users.get(peer).state == users.get(peer).states.index('Start') and event.message == 'Показать расписание':
+            users.get(peer).sendMessage(event.peer_id, duty.getDutyMessage(), users.get(peer).getKeyboard())
+            users.get(peer).state -= 1
 
             vkp = vk_api.upload.VkUpload(vk)
             data = vkp.photo_messages(duty.createIMG(), event.peer_id)
@@ -68,17 +72,17 @@ for event in longpoll.listen():
                 attachment=str('photo' + str(data[0]["owner_id"])+ '_' + str(data[0]["id"]) + '_' + str(data[0]["access_key"]))
             )
 
-        if mailer.state == mailer.states.index('Asking'):
+        if users.get(peer).state == users.get(peer).states.index('Asking'):
             if event.message == 'Нет':
-                mailer.state = mailer.states.index('Start') - 1
-        if mailer.state == mailer.states.index('Choice'):
-            curr_info.choice = mailer.places.index(event.message)
-        if mailer.state == mailer.states.index('Comment'):
+                users.get(peer).state = users.get(peer).states.index('Start') - 1
+        if users.get(peer).state == users.get(peer).states.index('Choice'):
+            users.getI(peer).choice = users.get(peer).places.index(event.message)
+        if users.get(peer).state == users.get(peer).states.index('Comment'):
             if event.message != 'Отправить без комментария':
-                curr_info.comment = event.message
+                users.getI(peer).comment = event.message
             else:
-                curr_info.comment = 0
+                users.getI(peer).comment = 0
 
-        mailer.send(event.peer_id, info=curr_info)
+        users.get(peer).send(event.peer_id, info=users.getI(peer))
 
-        print(mailer.states[mailer.state])
+        log(users.get(peer))

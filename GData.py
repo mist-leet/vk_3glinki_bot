@@ -18,32 +18,32 @@ class GSpace:
 
     @staticmethod
     def GetRooms():
+
         rooms = [
         Room([
-            '@id119568994 (Илья)', '@id119568994 (Никита)', '@id119568994 (Никита)'
+            '@id119568994 (Илья)', '@id221460353 (Никита)', '@sarsit(Никита)', '@id152207052 (Андрей)'
         ], 'Гест 4'),
         Room([
             '@ebeniesexom (ГЕСТ 8)'
         ], 'Восьмерка'),
         Room([
-            '@id119568994 (Арсен)', '@id119568994 (Богдан)'
+            '@emshv_arsn (Арсен)', '@oslivizan (Богдан)'
         ], 'Голубая лагуна'),
         Room([
-            '@id119568994 (Катя)'
+            '@id82573049 (Катя)'
         ], 'Скворечник'),
         Room([
-            '@id119568994 (Жанна)'
+            '@id529306038 (Жанна)'
         ], 'Нора'),
         Room([
-            '@id119568994 (Кристина)', '@id119568994 (Таня)'
+            '@elska_garcia (Кристина)', '@silvermarten (Таня)'
         ], 'Белая комната'),
         Room([
-            '@id119568994 (Аня)', '@id119568994 (Юля)'
+            '@id119568994 (Аня)', '@id16144866 (Юля)'
         ], 'Аня+Юля'),
         Room([
-            '@id119568994 (Софа)', '@id119568994 (Надя)', '@id119568994 (Паша)'
+            '@id133687981 (Софа)', '@dinaroy (Надя)', '@auroborous (Паша)'
         ], 'Комната Дани')]
-
         return rooms
 
 
@@ -98,13 +98,13 @@ class Duty:
         return str
 
     def createIMG(self):
-        img = Image.new('RGB', (1100, 250), color = (255, 255, 255))
+        img = Image.new('RGB', (1200, 270), color = (255, 255, 255))
         d = ImageDraw.Draw(img)
         font = ImageFont.truetype("ex/working/x.otf", 60)
         str = ''
         for s in self.duty:
             str += s.place + ' : ' + s.person.name + '\n'
-        d.multiline_text((10,10), str, fill=(0,0,0), font=font)
+        d.multiline_text((20,20), str, fill=(0,0,0), font=font)
         #for i in range(len(self.duty)):
         #    d.text((10 , 10 + i * 10), str(self.duty[i].place + " : " + self.duty[i].person.name), fill=(255, 255, 0),
         #           font=font)
