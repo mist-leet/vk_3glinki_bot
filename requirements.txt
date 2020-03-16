@@ -1,4 +1,5 @@
 vk_api
+pillow
 beautifulsoup4
 requests
 enum34;python_version<"3.4"
