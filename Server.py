@@ -1,12 +1,7 @@
 # coding=utf-8
 from vk_api.keyboard import VkKeyboard
-import requests
 import re
-from datetime import datetime, date, time
-
-import vk_api
-from vk_api import VkUpload
-from vk_api.longpoll import VkLongPoll, VkEventType
+from datetime import datetime
 from vk_api.utils import get_random_id
 
 from GData import GSpace, Room, Place
@@ -30,7 +25,7 @@ class Log:
         self.places = GSpace.GetPlaces()
         self.LOG = []
         for i in range(len(self.places)):
-            self.LOG.append([self.places[i], 0])
+            self.LOG.append([self.places[i], datetime.now()])
 
     def DoLog(self, str):
         self.LOG[self.places.index(str)][1] = datetime.now()
@@ -38,6 +33,8 @@ class Log:
     def CheckLogMessage(self, str):
         delta = self.LOG[self.places.index[str]][1].timedelta(datetime.now())
         return "Последний раз сообщения по месту '" + str + "' приходили " + delta + '. Все равно отправить?'
+
+
 
 class BotMailer:
 
@@ -51,6 +48,8 @@ class BotMailer:
         if self.state == 0:
             self.state = len(self.states)
 
+
+
     def getMessage(self):
         return '____'
 
@@ -58,6 +57,8 @@ class BotMailer:
         keyboard = VkKeyboard()
         if self.state == self.states.index('Start'):
             keyboard.add_button('Напомнить дежурным')
+            keyboard.add_line()
+            keyboard.add_button('Показать расписание')
         elif self.state == self.states.index('Choice'):
             for i in range(len(self.places)):
                 keyboard.add_button(self.places[i])
@@ -65,19 +66,23 @@ class BotMailer:
                     keyboard.add_line()
         elif self.state == self.states.index('Comment'):
             keyboard.add_button('Отправить без комментария')
-            # return VkKeyboard().get_empty_keyboard()
+        elif self.state == self.states.index('Asking'):
+            keyboard.add_button('Да')
+            keyboard.add_button('Нет')
         else:
             return VkKeyboard().get_empty_keyboard()
         return keyboard.get_keyboard()
 
-    def __init__(self, vk):
+    def __init__(self, vk, rooms, places, peer):
+        self.peer = peer
         self.vk = vk
-        self.places = GSpace.GetPlaces()
-        self.rooms = GSpace.GetRooms()
+        self.places = places
+        self.rooms = rooms
         self.states = [
             'Start',
             'Choice',
             'Comment',
+            'Asking',
             'Mailing'
         ]
         self.state = 0
@@ -100,13 +105,13 @@ class BotMailer:
                                  str(get_name_by_name(person) + ' уведомлен\n'),
                                  self.getKeyboard())
                 self.log.DoLog(self.places[info.choice])
-                #!
-                for a in self.log.LOG:
-                    print(a)
-                #!
                 self.send(id, info)
         if self.state == self.states.index('Comment'):
             self.sendMessage(id, "Введите комментарий или нажмите 'Отправить без комментария'", self.getKeyboard())
+        if self.state == self.states.index('Asking'):
+            self.sendMessage(id, str('Сообщение о ' + self.places[info.choice] + ' было отправлено ' +
+                                     (self.log.LOG[info.choice][1]).strftime('%d ') + 'числа в ' + (self.log.LOG[info.choice][1]).strftime('%H:%M ') +
+                                     ', все равно отправить?'), self.getKeyboard())
 
     def sendMessage(self, id, message, keyboard):
         if keyboard != 0:
@@ -137,11 +142,6 @@ class BotMailer:
                     random_id=get_random_id(),
                     message=message
                 )
-
-    def GetIndexOfPlace(self, str):
-        for i in range(len(self.places)):
-            if str == self.places[i]:
-                return i
 
 
 def get_id_by_name(str):
