@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="84e1daba-32cb-4586-9375-96c0a1b7ec31" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GData.py" beforeDir="false" afterPath="$PROJECT_DIR$/GData.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server.py" beforeDir="false" afterPath="$PROJECT_DIR$/Server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/duty.png" beforeDir="false" afterPath="$PROJECT_DIR$/duty.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="84e1daba-32cb-4586-9375-96c0a1b7ec31" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,10 +72,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
+            <state relative-caret-position="333">
               <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="84" />
               <folding>
                 <element signature="e#308#407#0" />
@@ -98,34 +92,12 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/Python37-32/Lib/codecs.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="309" selection-start-line="309" selection-end-line="309" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GData.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            <state relative-caret-position="188">
+              <caret line="38" column="58" lean-forward="true" selection-start-line="38" selection-start-column="58" selection-end-line="38" selection-end-column="58" />
               <folding>
-                <element signature="e#111#1196#0" />
-                <element signature="e#154#348#0" />
-                <element signature="e#397#1196#0" />
-                <element signature="e#405#1174#0" />
-                <element signature="e#420#515#0" />
-                <element signature="e#541#588#0" />
-                <element signature="e#617#688#0" />
-                <element signature="e#722#767#0" />
-                <element signature="e#797#843#0" />
-                <element signature="e#867#939#0" />
-                <element signature="e#972#1038#0" />
-                <element signature="e#1065#1156#0" />
-                <element signature="e#1215#1365#0" />
                 <element signature="e#1258#1365#0" />
                 <element signature="e#1385#1435#0" />
                 <element signature="e#1419#1435#0" />
@@ -224,9 +196,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/private.py" />
-        <option value="$PROJECT_DIR$/GData.py" />
         <option value="$PROJECT_DIR$/Server.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/GData.py" />
       </list>
     </option>
   </component>
@@ -559,43 +531,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GData.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding>
-            <element signature="e#111#1196#0" />
-            <element signature="e#154#348#0" />
-            <element signature="e#397#1196#0" />
-            <element signature="e#405#1174#0" />
-            <element signature="e#420#515#0" />
-            <element signature="e#541#588#0" />
-            <element signature="e#617#688#0" />
-            <element signature="e#722#767#0" />
-            <element signature="e#797#843#0" />
-            <element signature="e#867#939#0" />
-            <element signature="e#972#1038#0" />
-            <element signature="e#1065#1156#0" />
-            <element signature="e#1215#1365#0" />
-            <element signature="e#1258#1365#0" />
-            <element signature="e#1385#1435#0" />
-            <element signature="e#1419#1435#0" />
-            <element signature="e#1457#1547#0" />
-            <element signature="e#1500#1547#0" />
-            <element signature="e#1569#2937#0" />
-            <element signature="e#1627#1980#0" />
-            <element signature="e#1681#1847#0" />
-            <element signature="e#1889#1980#0" />
-            <element signature="e#2018#2183#0" />
-            <element signature="e#2093#2152#0" />
-            <element signature="e#2223#2336#0" />
-            <element signature="e#2371#2937#0" />
-            <element signature="e#2697#2729#0" />
-            <marker date="1584368486558" expanded="false" signature="1463:1560" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Server.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -653,7 +588,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
+        <state relative-caret-position="333">
           <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="84" />
           <folding>
             <element signature="e#308#407#0" />
@@ -665,6 +600,30 @@
             <marker date="1584370610004" expanded="true" signature="220:225" ph="..." />
             <marker date="1584370610004" expanded="true" signature="220:609" ph="..." />
             <marker date="1584370610004" expanded="true" signature="816:905" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GData.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="38" column="58" lean-forward="true" selection-start-line="38" selection-start-column="58" selection-end-line="38" selection-end-column="58" />
+          <folding>
+            <element signature="e#1258#1365#0" />
+            <element signature="e#1385#1435#0" />
+            <element signature="e#1419#1435#0" />
+            <element signature="e#1457#1547#0" />
+            <element signature="e#1500#1547#0" />
+            <element signature="e#1569#2937#0" />
+            <element signature="e#1627#1980#0" />
+            <element signature="e#1681#1847#0" />
+            <element signature="e#1889#1980#0" />
+            <element signature="e#2018#2183#0" />
+            <element signature="e#2093#2152#0" />
+            <element signature="e#2223#2336#0" />
+            <element signature="e#2371#2937#0" />
+            <element signature="e#2697#2729#0" />
+            <marker date="1584368486558" expanded="false" signature="1463:1560" ph="..." />
           </folding>
         </state>
       </provider>
