@@ -1,13 +1,13 @@
 # coding=utf-8
 from vk_api.utils import get_random_id
 
-import private
 import GData
 import requests
 import vk_api
 
 from vk_api.longpoll import VkLongPoll, VkEventType
 from Server import BotMailer, info
+import sys
 
 class user_mailer:
     def __init__(self):
@@ -35,8 +35,11 @@ class user_mailer:
 def log(mailer):
     print('user: ' + str(mailer.peer) + ' state: ' + str(mailer.states[mailer.state]))
 
+
+
+
 session = requests.Session()
-vk_session = vk_api.VkApi(token=private.__token)
+vk_session = vk_api.VkApi(token=sys.argv[1])
 
 
 longpoll = VkLongPoll(vk_session)

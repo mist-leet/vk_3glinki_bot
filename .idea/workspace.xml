@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="84e1daba-32cb-4586-9375-96c0a1b7ec31" name="Default Changelist" comment="" />
+    <list default="true" id="84e1daba-32cb-4586-9375-96c0a1b7ec31" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -9,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/vk_3glinki_bot$main.coverage" NAME="main Coverage Results" MODIFIED="1584382730459" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/vk_3glinki_bot$main.coverage" NAME="main Coverage Results" MODIFIED="1584384654082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -44,69 +48,66 @@
         <counts>
           <entry key="gitignore" value="1" />
           <entry key="png" value="1" />
-          <entry key="py" value="29" />
+          <entry key="py" value="30" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Image" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="29" />
+          <entry key="Python" value="30" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="121" />
+          <entry key="Python Console" value="132" />
           <entry key="dummy" value="54" />
-          <entry key="py" value="10027" />
+          <entry key="py" value="10065" />
           <entry key="txt" value="129" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="183" />
-          <entry key="Python" value="10148" />
+          <entry key="Python" value="10197" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            <state relative-caret-position="44">
+              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
               <folding>
-                <element signature="e#15#54#0" expanded="true" />
+                <element signature="e#225#810#0" />
+                <element signature="e#253#292#0" />
                 <element signature="e#308#407#0" />
                 <element signature="e#342#387#0" />
+                <element signature="e#524#603#0" />
                 <element signature="e#581#656#0" />
                 <element signature="e#615#656#0" />
+                <element signature="e#761#810#0" />
                 <element signature="e#679#761#0" />
+                <element signature="e#1366#2708#0" />
+                <element signature="e#1404#1911#0" />
                 <element signature="e#2042#2150#0" />
-                <marker date="1584370610004" expanded="true" signature="220:225" ph="..." />
-                <marker date="1584370610004" expanded="true" signature="220:609" ph="..." />
-                <marker date="1584370610004" expanded="true" signature="816:905" ph="..." />
+                <element signature="e#2391#2545#0" />
+                <marker date="1584385098734" expanded="false" signature="216:221" ph="..." />
+                <marker date="1584385098734" expanded="false" signature="216:605" ph="..." />
+                <marker date="1584385098734" expanded="true" signature="812:901" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../../vk_api-master/vk_api/vk_api.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vk_api.py">
+        <entry file="file://$PROJECT_DIR$/private.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
+            <state>
+              <caret column="96" selection-start-column="11" selection-end-column="96" />
             </state>
           </provider>
         </entry>
@@ -216,8 +217,8 @@
       <list>
         <option value="$PROJECT_DIR$/private.py" />
         <option value="$PROJECT_DIR$/Server.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/GData.py" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
@@ -266,12 +267,20 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="ign&#9;FILE&#9;file://C:/py_projects/3glinki_bo/vk_3glinki_bot/.gitignore" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;null&#9;null&#10;ign&#9;FILE&#9;file://C:/py_projects/3glinki_bo/vk_3glinki_bot/.gitignore" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/main.py" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="vk_3glinki_bot" is-module-sdk="true">
+        <option name="myUseModuleSdk" value="true" />
+        <option name="myModuleName" value="vk_3glinki_bot" />
+      </console-settings>
+    </option>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -364,12 +373,12 @@
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.25936198" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2590604" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32885906" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32885906" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -378,7 +387,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32885906" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32885906" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32885906" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" order="13" weight="0.32885906" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -427,6 +436,13 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>41</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -523,13 +539,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
           <caret line="680" selection-start-line="680" selection-end-line="680" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/private.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
@@ -636,29 +645,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/../../vk_api-master/vk_api/vk_api.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-          <folding>
-            <element signature="e#15#54#0" expanded="true" />
-            <element signature="e#308#407#0" />
-            <element signature="e#342#387#0" />
-            <element signature="e#581#656#0" />
-            <element signature="e#615#656#0" />
-            <element signature="e#679#761#0" />
-            <element signature="e#2042#2150#0" />
-            <marker date="1584370610004" expanded="true" signature="220:225" ph="..." />
-            <marker date="1584370610004" expanded="true" signature="220:609" ph="..." />
-            <marker date="1584370610004" expanded="true" signature="816:905" ph="..." />
-          </folding>
+        <state relative-caret-position="377">
+          <caret line="23" column="15" lean-forward="true" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../vk_api-master/vk_api/vk_api.py">
+    <entry file="file://$PROJECT_DIR$/private.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
+        <state>
+          <caret column="96" selection-start-column="11" selection-end-column="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <element signature="e#225#810#0" />
+            <element signature="e#253#292#0" />
+            <element signature="e#308#407#0" />
+            <element signature="e#342#387#0" />
+            <element signature="e#524#603#0" />
+            <element signature="e#581#656#0" />
+            <element signature="e#615#656#0" />
+            <element signature="e#761#810#0" />
+            <element signature="e#679#761#0" />
+            <element signature="e#1366#2708#0" />
+            <element signature="e#1404#1911#0" />
+            <element signature="e#2042#2150#0" />
+            <element signature="e#2391#2545#0" />
+            <marker date="1584385098734" expanded="false" signature="216:221" ph="..." />
+            <marker date="1584385098734" expanded="false" signature="216:605" ph="..." />
+            <marker date="1584385098734" expanded="true" signature="812:901" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
