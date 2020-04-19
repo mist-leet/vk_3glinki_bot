@@ -56,6 +56,8 @@ class Camera:
             cv2.destroyAllWindows()
         return 'img.jpg'
 
+
+
 class BotMailer:
 
     def nextState(self):
@@ -79,6 +81,9 @@ class BotMailer:
             keyboard.add_button('Напомнить дежурным')
             keyboard.add_line()
             keyboard.add_button('Показать расписание')
+            keyboard.add_line()
+            keyboard.add_button('Показать Кухню')
+
         elif self.state == self.states.index('Choice'):
             for i in range(len(self.places)):
                 keyboard.add_button(self.places[i])

@@ -1,4 +1,4 @@
-# coding=utf-8
+
 from vk_api.utils import get_random_id
 
 import GData
@@ -6,7 +6,7 @@ import requests
 import vk_api
 
 from vk_api.longpoll import VkLongPoll, VkEventType
-from Server import BotMailer, info
+from Server import BotMailer, info, Camera
 import sys
 
 class user_mailer:
@@ -82,6 +82,25 @@ for event in longpoll.listen():
                 random_id=get_random_id(),
                 message=corona
                 )
+
+        if users.get(peer).state == users.get(peer).states.index('Start') and event.message.encode('utf-8')  == 'Показать Кухню':
+            users.get(peer).sendMessage(event.peer_id, duty.getDutyMessage(), users.get(peer).getKeyboard())
+            users.get(peer).state -= 1
+
+            vkp = vk_api.upload.VkUpload(vk)
+            data = vkp.photo_messages(Camera.getPic(), event.peer_id)
+
+            vk.messages.send(
+                peer_id=event.peer_id,
+                random_id=get_random_id(),
+                attachment=str('photo' + str(data[0]["owner_id"])+ '_' + str(data[0]["id"]) + '_' + str(data[0]["access_key"]))
+            )
+            vk.messages.send(
+                peer_id=event.peer_id,
+                random_id=get_random_id(),
+                message=corona
+                )
+
 
         if users.get(peer).state == users.get(peer).states.index('Asking'):
             if event.message.encode('utf-8')  == 'Нет':
