@@ -11,7 +11,7 @@ class GSpace:
         places = []
         places.append('Кухня')
         places.append('Раздельный сбор')
-        places.append('Ванна и туалет')
+        places.append('Ванная и туалет')
         places.append('Красный ковер + крысики')
         return places
 
@@ -24,7 +24,7 @@ class GSpace:
             '@id119568994 (Илья)', '@id221460353 (Никита)', '@sarsit(Никита)', '@id152207052 (Андрей)'
         ], 'Гест 4'),
         Room([
-            '@ebeniesexom (ГЕСТ 8)'
+            '@1anastasia (Робототехника)', '@piiligriim (Сергей)'
         ], 'Восьмерка'),
         Room([
             '@emshv_arsn (Арсен)', '@oslivizan (Богдан)'
@@ -36,14 +36,24 @@ class GSpace:
             '@id529306038 (Жанна)'
         ], 'Нора'),
         Room([
-            '@elska_garcia (Кристина)', '@silvermarten (Таня)'
+            '@silvermarten (Таня)', '@askarbina (Катя)'
         ], 'Белая комната'),
         Room([
-            '@id119568994 (Аня)', '@id16144866 (Юля)'
+            '@n_mori_an (Аня)', '@id16144866 (Юля)'
         ], 'Аня+Юля'),
         Room([
             '@id133687981 (Софа)', '@dinaroy (Надя)', '@auroborous (Паша)'
-        ], 'Комната Дани')]
+        ], 'Софа+Надя+Паша'),
+        Room([
+            '@tdamrina (Таня)'
+        ], 'Красная комната'),
+        Room([
+            '@solorman (Руслан)', '@nasiba1801 (Настя В)'
+        ], 'Руслан Настя'),
+        Room([
+            '@id109997707 (Леша)'
+        ], 'Цветник')
+        ]
         return rooms
 
 
@@ -78,8 +88,10 @@ class Duty:
             for i in range(len(places)):
                 self.duty.append(duty_el(rooms_copy[i], places[i]))
         elif is_random == 1:
-            for i in range(len(places)):
-                self.duty.append(duty_el(rooms[i], places[i]))
+            self.duty.append(duty_el((rooms[1]), places[0])) #  Kitchen
+            self.duty.append(duty_el((rooms[7]), places[1])) #  Trash
+            self.duty.append(duty_el((rooms[5]), places[2])) #  Bath
+            self.duty.append(duty_el((rooms[2]), places[3])) #  Carpet
 
 
     def getListDuty(self):
@@ -100,11 +112,11 @@ class Duty:
     def createIMG(self):
         img = Image.new('RGB', (1200, 270), color = (255, 255, 255))
         d = ImageDraw.Draw(img)
-        font = ImageFont.truetype("ex/working/x.otf", 60)
+        font = ImageFont.truetype("x.otf", 60)
         str = ''
         for s in self.duty:
             str += s.place + ' : ' + s.person.name + '\n'
-        d.multiline_text((20,20), str, fill=(0,0,0), font=font)
+        d.multiline_text((20,20), str.decode('utf-8'), fill=(0,0,0), font=font)
         #for i in range(len(self.duty)):
         #    d.text((10 , 10 + i * 10), str(self.duty[i].place + " : " + self.duty[i].person.name), fill=(255, 255, 0),
         #           font=font)

@@ -35,26 +35,28 @@ class user_mailer:
 def log(mailer):
     print('user: ' + str(mailer.peer) + ' state: ' + str(mailer.states[mailer.state]))
 
-
-
+class MyLongPoll(VkLongPoll):
+    def listen(self):
+        while True:
+            try:
+                for event in self.check():
+                    yield event
+            except Exception as e:
+                print(e)
 
 session = requests.Session()
 vk_session = vk_api.VkApi(token=sys.argv[1])
 
-
-longpoll = VkLongPoll(vk_session)
+longpoll = MyLongPoll(vk_session)
 vk = vk_session.get_api()
-
 
 duty = GData.Duty(GData.GSpace.GetRooms(), GData.GSpace.GetPlaces(), is_random=1)
 d = duty.getListDuty()
 
-
-#curr_info = info(0, '')
-
 users = user_mailer()
 users.add(vk, d[0], d[1], 0, info(0, ''))
 
+corona = 'https://docs.google.com/spreadsheets/d/1C3dLRhUcnRN22DH34vgJ6kf4wAC98FLxW4qrJUyA4bc/edit?usp=sharing'
 
 for event in longpoll.listen():
     if (users.check(event.peer_id)):
@@ -62,7 +64,8 @@ for event in longpoll.listen():
 
     if event.type == VkEventType.MESSAGE_NEW and event.to_me and event.text:
         peer = event.peer_id
-        if users.get(peer).state == users.get(peer).states.index('Start') and event.message == 'Показать расписание':
+
+        if users.get(peer).state == users.get(peer).states.index('Start') and event.message.encode('utf-8')  == 'Показать расписание':
             users.get(peer).sendMessage(event.peer_id, duty.getDutyMessage(), users.get(peer).getKeyboard())
             users.get(peer).state -= 1
 
@@ -74,15 +77,20 @@ for event in longpoll.listen():
                 random_id=get_random_id(),
                 attachment=str('photo' + str(data[0]["owner_id"])+ '_' + str(data[0]["id"]) + '_' + str(data[0]["access_key"]))
             )
+            vk.messages.send(
+                peer_id=event.peer_id,
+                random_id=get_random_id(),
+                message=corona
+                )
 
         if users.get(peer).state == users.get(peer).states.index('Asking'):
-            if event.message == 'Нет':
+            if event.message.encode('utf-8')  == 'Нет':
                 users.get(peer).state = users.get(peer).states.index('Start') - 1
         if users.get(peer).state == users.get(peer).states.index('Choice'):
-            users.getI(peer).choice = users.get(peer).places.index(event.message)
+            users.getI(peer).choice = users.get(peer).places.index(event.message.encode('utf-8') )
         if users.get(peer).state == users.get(peer).states.index('Comment'):
-            if event.message != 'Отправить без комментария':
-                users.getI(peer).comment = event.message
+            if event.message.encode('utf-8')  != 'Отправить без комментария':
+                users.getI(peer).comment = event.message.encode('utf-8')
             else:
                 users.getI(peer).comment = 0
 

@@ -3,6 +3,7 @@ from vk_api.keyboard import VkKeyboard
 import re
 from datetime import datetime
 from vk_api.utils import get_random_id
+import cv2
 
 from GData import GSpace, Room, Place
 
@@ -34,7 +35,26 @@ class Log:
         delta = self.LOG[self.places.index[str]][1].timedelta(datetime.now())
         return "Последний раз сообщения по месту '" + str + "' приходили " + delta + '. Все равно отправить?'
 
+class Camera:
 
+    @staticmethod
+    def getPic():
+        webcam = cv2.VideoCapture(0)
+        try:
+            check, frame = webcam.read()
+            print(check)  # prints true as long as the webcam is running
+            cv2.imshow("Capturing", frame)
+            cv2.imwrite(filename='img.jpg', img=frame)
+            webcam.release()
+            print("Processing image...")
+
+        except(KeyboardInterrupt):
+            print("Turning off camera.")
+            webcam.release()
+            print("Camera off.")
+            print("Program ended.")
+            cv2.destroyAllWindows()
+        return 'img.jpg'
 
 class BotMailer:
 
