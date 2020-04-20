@@ -112,11 +112,11 @@ class Duty:
     def createIMG(self):
         img = Image.new('RGB', (1200, 270), color = (255, 255, 255))
         d = ImageDraw.Draw(img)
-        font = ImageFont.truetype("x.otf", 60)
+        font = ImageFont.truetype("ex/working/x.otf", 60)
         str = ''
         for s in self.duty:
             str += s.place + ' : ' + s.person.name + '\n'
-        d.multiline_text((20,20), str.decode('utf-8'), fill=(0,0,0), font=font)
+        d.multiline_text((20,20), str, fill=(0,0,0), font=font)
         #for i in range(len(self.duty)):
         #    d.text((10 , 10 + i * 10), str(self.duty[i].place + " : " + self.duty[i].person.name), fill=(255, 255, 0),
         #           font=font)
