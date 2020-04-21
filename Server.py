@@ -100,7 +100,8 @@ class BotDuty(Bots):
         self.states = {
             'Choose place': 1,
             'Choose room': 2,
-            'Check': 3
+            'Check': 3,
+            'End' : 4
         }
         self.state = 1
 
@@ -143,9 +144,10 @@ class BotDuty(Bots):
             # TODO make keyaboard for chec
             # TODO return new duty
             # TODO add new state
-            for place, room in self.duty_places,self.duty_rooms:
-                str += place + ' : ' + room.name
-            return  str
+
+            for i in range(len(self.duty_rooms)):
+                str += self.duty_places[i] + ' : ' + self.duty_rooms[i].name
+            return str
         return '____'
 
     def sendMessage(self, id, message, keyboard):
@@ -205,6 +207,11 @@ class BotDuty(Bots):
             return
         if self.state == self.states['Check']:
             self.sendMessage(id, self.getMessage(), self.getKeyboard())
+        if self.state == self.states['End']:
+            if info.comment == 'Отправить':
+                self.peer = 1
+            else:
+                self.peer = 0
 
     def Pop(self, obj):
         if obj in self.places:

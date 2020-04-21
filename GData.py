@@ -92,6 +92,9 @@ class Duty:
             self.duty.append(duty_el((rooms[7]), places[1])) #  Trash
             self.duty.append(duty_el((rooms[5]), places[2])) #  Bath
             self.duty.append(duty_el((rooms[2]), places[3])) #  Carpet
+        elif is_random == 2:
+            for i in range(4):
+                self.duty.append(duty_el(places[i], rooms[i]))
 
 
     def getListDuty(self):

@@ -37,6 +37,7 @@ class user_mailer:
 def log(mailer):
     print('user: ' + str(mailer.peer) + ' state: ' + str(mailer.states[mailer.state]))
 
+
 class MyLongPoll(VkLongPoll):
     def listen(self):
         while True:
@@ -45,7 +46,7 @@ class MyLongPoll(VkLongPoll):
                     yield event
             except Exception as e:
                 print(e)
-
+s
 
 session = requests.Session()
 vk_session = vk_api.VkApi(token=sys.argv[1])
@@ -64,20 +65,31 @@ corona = 'https://docs.google.com/spreadsheets/d/1C3dLRhUcnRN22DH34vgJ6kf4wAC98F
 duty_bot = BotDuty(vk, GData.GSpace.GetRooms(), GData.GSpace.GetPlaces(), info(0, ''), 0, d)
 
 for event in longpoll.listen():
-    if (users.check(event.peer_id)):
+    if users.check(event.peer_id):
         users.add(vk, d[0], d[1], event.peer_id, info(0, ''))
 
     if event.type == VkEventType.MESSAGE_NEW and event.to_me and event.text:
+        peer = event.peer_id
+
         # ==== duty ==== #
         if duty_bot.peer:
-            if duty_bot.state in [1,2]:
+            if duty_bot.state in [1, 2]:
                 duty_bot.Pop(event.message)
-
+            if duty_bot.state == duty_bot.states['Check']:
+                info.comment = event.message
             duty_bot.send(event.peer_id, info)
+
+            if duty_bot.peer == 1:
+                duty = GData.Duty(duty_bot.duty_places, duty_bot.duty_rooms, is_random=2)
+                duty_bot.peer = 0
+                users.get(peer).state = -1
+                users.get(peer).send(event.peer_id, info=users.getI(peer))
+            if duty_bot.peer == 0:
+                users.get(peer).state = -1
+                users.get(peer).send(event.peer_id, info=users.getI(peer))
+
             continue
         # ==== duty ==== #
-
-        peer = event.peer_id
 
         if users.get(peer).state == users.get(peer).states.index('Start') and event.message == 'Показать расписание':
             users.get(peer).sendMessage(event.peer_id, duty.getDutyMessage(), users.get(peer).getKeyboard())
@@ -112,11 +124,12 @@ for event in longpoll.listen():
                     'photo' + str(data[0]["owner_id"]) + '_' + str(data[0]["id"]) + '_' + str(data[0]["access_key"]))
             )
 
-        # =============================#
+        # ====duty====#
         if users.get(peer).state == users.get(peer).states.index('Start') and event.message == 'Создать расписание':
+            duty_bot = BotDuty(vk, GData.GSpace.GetRooms(), GData.GSpace.GetPlaces(), info(0, ''), 0,
+                               duty.getListDuty())
             duty_bot.peer = event.peer_id
-
-        # =============================#
+        # ====duty====#
 
         if users.get(peer).state == users.get(peer).states.index('Asking'):
             if event.message == 'Нет':
@@ -131,4 +144,4 @@ for event in longpoll.listen():
 
         users.get(peer).send(event.peer_id, info=users.getI(peer))
 
-        #log(users.get(peer))
+        # log(users.get(peer))
