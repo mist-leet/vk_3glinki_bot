@@ -5,6 +5,7 @@ import requests
 import vk_api
 
 from vk_api.longpoll import VkLongPoll, VkEventType
+from vk_api.audio import  VkAudio
 from Server import BotMailer, BotDuty, info, Camera, Bots
 import sys
 
@@ -46,7 +47,7 @@ class MyLongPoll(VkLongPoll):
                     yield event
             except Exception as e:
                 print(e)
-s
+
 
 session = requests.Session()
 vk_session = vk_api.VkApi(token=sys.argv[1])
@@ -65,8 +66,14 @@ corona = 'https://docs.google.com/spreadsheets/d/1C3dLRhUcnRN22DH34vgJ6kf4wAC98F
 duty_bot = BotDuty(vk, GData.GSpace.GetRooms(), GData.GSpace.GetPlaces(), info(0, ''), 0, d)
 
 for event in longpoll.listen():
+    #print(event)
     if users.check(event.peer_id):
         users.add(vk, d[0], d[1], event.peer_id, info(0, ''))
+    if event.type == VkEventType.MESSAGE_NEW and event.to_me and event.attachments and event.attachments['attach1_type'] == 'audio':
+        print(event.attachments)
+        vk_audio = vk_api.audio.VkAudio(vk)
+
+        #print(a.get(-1,-1,event.attachments['attach1']))
 
     if event.type == VkEventType.MESSAGE_NEW and event.to_me and event.text:
         peer = event.peer_id

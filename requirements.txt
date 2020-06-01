@@ -1,3 +1,4 @@
+pafy
 vk_api
 pillow
 beautifulsoup4
